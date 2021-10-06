@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "styles/theme";
 
 export const XMain = styled.div`
   display: flex;
@@ -10,4 +11,5 @@ export const XRight = styled.div`
   flex-direction: column;
   height: 100%;
   width: 100%;
+  background: ${theme.colors.grayDark}
 `;
