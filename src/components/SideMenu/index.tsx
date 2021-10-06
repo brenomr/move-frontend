@@ -1,5 +1,4 @@
-import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import { Inbox } from "@material-ui/icons";
+import { List } from "@material-ui/core";
 import { ISideMenu } from "./index.d";
 import SideMenuOption from "./option";
 import { XListContainer } from "./styles";
