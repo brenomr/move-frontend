@@ -1,21 +1,20 @@
+import Paper from 'components/Paper';
+import Title from 'components/Title';
 import { selectUser } from 'features/user/selectors';
-import useLogout from 'hooks/useLogout';
-import MainLayout from 'layout/main';
 import { useSelector } from 'react-redux';
+import WelcomeImage from 'assets/images/welcome.svg';
 
 const HomePage = () => {
     const { email, name } = useSelector(selectUser);
-    const logout = useLogout();
-    return (
-        <MainLayout>
-            <div>
-                Bem vindo {name} :) <br />
-                <small>{email}</small>
-                <br />
-                <button onClick={logout}>Sair</button>
-            </div>
-        </MainLayout>
 
+    return (
+        <Paper>
+            <Title>
+                Bem vindo a Move, {name} :)
+            </Title>
+            <div>{email}</div>
+            <img src={WelcomeImage} alt="Bem-vindo!" style={{height: 500}}/>
+        </Paper>
     )
 }
 
