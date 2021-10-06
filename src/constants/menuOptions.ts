@@ -1,10 +1,9 @@
-import { Person } from "@material-ui/icons";
+import { Group, Home } from "@material-ui/icons";
 import { ISideMenuOption } from "components/SideMenu/index.d";
 
 const menuOptions: ISideMenuOption[] = [
-    { icon: Person, label: 'Meu Perfil', link: '/perfil' },
-    { icon: Person, label: 'Meu Perfil', link: '/perfil' },
-    { icon: Person, label: 'Meu Perfil', link: '/perfil' }
+    { icon: Home, label: 'Home', link: '/' },
+    { icon: Group, label: 'Alunos', link: '/alunos' },
 ]
 
 export default menuOptions;
