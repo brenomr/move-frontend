@@ -1,33 +1,7 @@
-import { alpha, InputBase, Menu, MenuItem, IconButton, Badge, Box, AppBar, Toolbar, Typography } from '@material-ui/core';
-import { AccountCircle, Mail, More, Notifications, MenuBook, MenuOpen, MenuOutlined } from '@material-ui/icons';
+import { Menu, MenuItem, IconButton, Badge, Box, AppBar, Toolbar } from '@material-ui/core';
+import { AccountCircle, Mail, More, Notifications, MenuOutlined, ExitToApp } from '@material-ui/icons';
+import useLogout from 'hooks/useLogout';
 import * as React from 'react';
-import styled from 'styled-components';
-
-
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    marginLeft: 0,
-    width: '100%',
-
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + 4px)`,
-        width: '100%',
-    },
-}));
 
 export default function TopMenu() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -36,6 +10,7 @@ export default function TopMenu() {
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const logout = useLogout();
 
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -71,8 +46,8 @@ export default function TopMenu() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Meu perfil</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Sair</MenuItem>
         </Menu>
     );
 
@@ -135,35 +110,18 @@ export default function TopMenu() {
                     <IconButton>
                         <MenuOutlined />
                     </IconButton>
-                    <Typography>
-                        Home
-                    </Typography>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton size="medium" aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="error">
-                                <Mail />
-                            </Badge>
-                        </IconButton>
-                        <IconButton
-                            size="medium"
-                            aria-label="show 17 new notifications"
-                            color="inherit"
-                        >
-                            <Badge badgeContent={17} color="error">
-                                <Notifications />
-                            </Badge>
-                        </IconButton>
                         <IconButton
                             size="medium"
                             edge="end"
                             aria-label="account of current user"
                             aria-controls={menuId}
                             aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
+                            onClick={logout}
                             color="inherit"
                         >
-                            <AccountCircle />
+                            <ExitToApp />
                         </IconButton>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
