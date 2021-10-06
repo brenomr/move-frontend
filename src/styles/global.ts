@@ -93,6 +93,7 @@ export default createGlobalStyle`
  
      a {
        color: ${theme.colors.primaryDark};
+       text-decoration: none;
        &:hover{
          color: ${theme.colors.secondaryDark};
        }

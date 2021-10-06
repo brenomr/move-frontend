@@ -13,8 +13,8 @@ export const colors = {
   primary: "#ffc65c",
   primaryLight: "#ffe8bd",
   primaryDark: "#e1b35d",
-  secondary: "#ff5c6b",
-  secondaryDark: "#b64751"
+  secondary: "#688fba",
+  secondaryDark: "#516c89"
 }
 
 const gradients = {
