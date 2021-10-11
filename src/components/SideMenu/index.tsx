@@ -9,9 +9,15 @@ const SideMenu = ({ options }: ISideMenu) => {
     return (
         <XListContainer>
             <img src={Logo} alt="logo" />
-            <List>
-                {options.map(SideMenuOption)}
-            </List>
+            {options.map(category => (
+                <>
+                    <p>{category.label}</p>
+                    <List>
+                        {category.options.map(SideMenuOption)}
+                    </List>
+                </>
+            ))}
+
         </XListContainer>
     )
 }

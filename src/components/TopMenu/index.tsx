@@ -2,6 +2,7 @@ import { Menu, MenuItem, IconButton, Badge, Box, AppBar, Toolbar } from '@materi
 import { AccountCircle, Mail, More, Notifications, MenuOutlined, ExitToApp } from '@material-ui/icons';
 import useLogout from 'hooks/useLogout';
 import * as React from 'react';
+import theme from 'styles/theme';
 
 export default function TopMenu() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -105,41 +106,41 @@ export default function TopMenu() {
 
     return (
         <Box >
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton>
-                        <MenuOutlined />
+            <AppBar position="static" style={{ background: theme.colors.primaryDark}}>
+            <Toolbar>
+                <IconButton>
+                    <MenuOutlined />
+                </IconButton>
+                <Box sx={{ flexGrow: 1 }} />
+                <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <IconButton
+                        size="medium"
+                        edge="end"
+                        aria-label="account of current user"
+                        aria-controls={menuId}
+                        aria-haspopup="true"
+                        onClick={logout}
+                        color="inherit"
+                    >
+                        <ExitToApp />
                     </IconButton>
-                    <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton
-                            size="medium"
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={logout}
-                            color="inherit"
-                        >
-                            <ExitToApp />
-                        </IconButton>
-                    </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="medium"
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <More />
-                        </IconButton>
-                    </Box>
-                </Toolbar>
-            </AppBar>
-            {renderMobileMenu}
-            {renderMenu}
-        </Box>
+                </Box>
+                <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                    <IconButton
+                        size="medium"
+                        aria-label="show more"
+                        aria-controls={mobileMenuId}
+                        aria-haspopup="true"
+                        onClick={handleMobileMenuOpen}
+                        color="inherit"
+                    >
+                        <More />
+                    </IconButton>
+                </Box>
+            </Toolbar>
+        </AppBar>
+            { renderMobileMenu }
+    { renderMenu }
+        </Box >
     );
 }

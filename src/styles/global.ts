@@ -69,7 +69,7 @@ export default createGlobalStyle`
  
      *::selection {
        color: white;
-       background: ${theme.colors.primary};
+       background: ${theme.colors.primaryDark};
      }
  
      *::-webkit-scrollbar {

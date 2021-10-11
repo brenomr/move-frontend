@@ -12,9 +12,9 @@ export const colors = {
   success: "#74c174",
   primary: "#ffc65c",
   primaryLight: "#ffe8bd",
-  primaryDark: "#e1b35d",
-  secondary: "#688fba",
-  secondaryDark: "#516c89"
+  primaryDark: "#ffaa40",
+  secondary: "#FF8E3D",
+  secondaryDark: "#e07c35"
 }
 
 const gradients = {
