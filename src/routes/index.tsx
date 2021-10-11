@@ -6,6 +6,13 @@ import StudentsList from 'pages/students/list';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NotFoundImage from 'assets/images/notfound.svg';
+import CreateStudent from 'pages/students/create';
+import ActivitiesList from 'pages/activities/list';
+import CreateActivity from 'pages/activities/create';
+import ExercisesList from 'pages/exercises/list';
+import CreateExercise from 'pages/exercises/create';
+import TrainingsList from 'pages/trainings/list';
+import CreateTraining from 'pages/trainings/create';
 
 const Routes = () => {
 
@@ -18,7 +25,23 @@ const Routes = () => {
                 <MainLayout>
                     <Switch>
                         <Route path="/" exact component={HomePage} />
+
                         <Route path="/alunos" exact component={StudentsList} />
+                        <Route path="/alunos/cadastrar" exact component={CreateStudent} />
+                        <Route path="/alunos/:id" exact component={CreateStudent} />
+
+                        <Route path="/atividades" exact component={ActivitiesList} />
+                        <Route path="/atividades/cadastrar" exact component={CreateActivity} />
+                        <Route path="/atividades/:id" exact component={CreateActivity} />
+
+                        <Route path="/exercicios" exact component={ExercisesList} />
+                        <Route path="/exercicios/cadastrar" exact component={CreateExercise} />
+                        <Route path="/exercicios/:id" exact component={CreateExercise} />
+
+                        <Route path="/treinos" exact component={TrainingsList} />
+                        <Route path="/treinos/cadastrar" exact component={CreateTraining} />
+                        <Route path="/treinos/:id" exact component={CreateTraining} />
+
                         <Route component={NotFound} />
                     </Switch>
                 </MainLayout>
