@@ -1,3 +1,6 @@
 export const  endpoints = {
-    students: 'students'
+    students: 'students',
+    trainings: 'trainings',
+    activities: 'activities',
+    exercises: 'exercises'
 }

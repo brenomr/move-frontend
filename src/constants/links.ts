@@ -1,3 +1,6 @@
 export const links = {
-    students: 'alunos'
+    students: 'alunos',
+    trainings: 'treinos',
+    activities: 'atividades',
+    exercises: 'exercicios'
 }
