@@ -33,7 +33,7 @@ const Table: React.FC<ITableProps> = (props: ITableProps) => {
         title={props.title}
       />
       <TableContainer>
-        {(props.rows.length === 0 || !props.rows.length) ? (
+        {(props.rows.total === 0 || !props.rows.total) ? (
           <>
             {props.loading ? (
               <XNoData className="noData">
@@ -62,7 +62,7 @@ const Table: React.FC<ITableProps> = (props: ITableProps) => {
             <TableBody>
               <Rows
                 options={props.options}
-                rows={props.rows}
+                rows={props.rows.data}
                 order={order}
                 orderBy={orderBy}
                 page={page}
@@ -75,7 +75,7 @@ const Table: React.FC<ITableProps> = (props: ITableProps) => {
         <Pagination
           quantityOfRows={[5, 10, 25]}
           component="div"
-          count={props.rows.length}
+          count={props.rows.total}
           rowsPerPage={rowsPerPage}
           page={page}
           onChangePage={(event: unknown, newPage: number) => {
