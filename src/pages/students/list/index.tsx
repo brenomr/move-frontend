@@ -2,8 +2,6 @@ import { Add, Delete, Edit } from "@material-ui/icons"
 import { IRow } from "components/EnhancedTable/index.d"
 import { Table } from "components/EnhancedTable"
 import { ICell } from "components/EnhancedTable/Header/index.d"
-import Paper from "components/Paper"
-import Title from "components/Title"
 import { endpoints } from "constants/endpoints"
 import { links } from "constants/links"
 import { namings } from "constants/namings"
@@ -16,13 +14,7 @@ const StudentsList = () => {
     const base = endpoints.students;
     const [orderBy, setOrderBy] = useState<keyof ICell>('name');
     const [loading, setLoading] = useState(true);
-    // const [data, setParams, update] = useData(base, setLoading);
-    const data = [
-        {id: '1', name: 'Mia Gomes'},
-        {id: '2', name: 'Gorila Roxo'},
-        {id: '3', name: 'Cleber Machado'},
-        {id: '4', name: 'Tobias Amarelo'}
-    ]
+    const [data, setParams, update] = useData(base, setLoading);
 
     const handleDelete = async (id: string | null) => {
 
@@ -37,7 +29,7 @@ const StudentsList = () => {
         if (result.isConfirmed) {
             try {
                 await api.delete(`/${endpoints.students}/${id}`);
-                // update();
+                update();
             } catch (error) {
                 Swal.fire({
                     title: 'Não foi possível excluir',
@@ -50,10 +42,10 @@ const StudentsList = () => {
 
     return (
         <Table
-            title='Alunos'
+            title={namings.students.plural}
             actions={[
                 {
-                    name: 'Cadastrar Aluno',
+                    name: `Cadastrar ${namings.students.singular}`,
                     icon: <Add />,
                     link: `${links.students}/cadastrar`
                 }
@@ -79,11 +71,17 @@ const StudentsList = () => {
             selectedCells={(value: IRow) => {
                 return {
                     id: value.id,
-                    name: value.name
+                    name: value.name,
+                    email: value.email,
+                    phone: value.phone,
+                    city: value.city
                 }
             }}
             cells={[
-                { id: 'name', label: 'Nome' }
+                { id: 'name', label: 'Nome' },
+                { id: 'email', label: 'Email' },
+                { id: 'phone', label: 'Celular' },
+                { id: 'city', label: 'Cidade' },
             ]}
         />
     )
