@@ -7,6 +7,7 @@ export interface IButton {
     type: 'submit' | 'button'
     variant?: 'outlined' | 'contained' | 'text'
     color?: 'primary' | 'secondary' | 'inherit' | 'default'
+    onClick?: () => void;
 }
 
 export const defaultProps: IButton = {
