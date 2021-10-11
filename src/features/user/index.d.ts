@@ -9,9 +9,10 @@ export interface IUserState {
   whois: TWhoIs
 }
 
-export type TWhoIs = EWhoIs.STUDENT | EWhoIs.PERSONAL | null
+export type TWhoIs = EWhoIs | null
 
 export enum EWhoIs {
   STUDENT = 'student',
-  PERSONAL = 'personal'
+  PERSONAL = 'personal',
+  ADMIN = 'admin'
 }
