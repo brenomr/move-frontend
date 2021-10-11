@@ -6,6 +6,11 @@ export const XMain = styled.div`
   height: 100vh;
 `;
 
+export const XContent = styled.div`
+  height: 100%;
+  overflow: auto;
+`;
+
 export const XRight = styled.div`
   display: flex;
   flex-direction: column;
