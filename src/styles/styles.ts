@@ -53,6 +53,8 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     button: {
+      display: 'flex',
+      justifyContent: 'space-between',
       '& > *': {
         margin: theme.spacing(1),
       },

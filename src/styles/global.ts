@@ -92,10 +92,10 @@ export default createGlobalStyle`
      }
  
      a {
-       color: ${theme.colors.primaryDark};
+       color: ${theme.colors.primary};
        text-decoration: none;
        &:hover{
-         color: ${theme.colors.secondaryDark};
+         color: ${theme.colors.primary};
        }
      }
  `;
