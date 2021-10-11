@@ -6,6 +6,7 @@ export interface ISideMenu {
 }
 
 export interface ISideMenuCategory {
+    key: string
     label: string
     options: ISideMenuOption[]
 }
