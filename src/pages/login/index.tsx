@@ -10,11 +10,16 @@ import { FitnessCenter, Person } from '@material-ui/icons';
 import { useState } from 'react';
 import { EWhoIs, TWhoIs } from 'features/user/index.d';
 import PasswordAdornment from 'components/PasswordAdornment';
-
+import api from 'services/api';
+import responseCheck from 'utils/responseCheck';
+import Swal from 'sweetalert2';
+import jwt from 'jsonwebtoken';
 
 const LoginPage = () => {
 
     const [tab, setTab] = useState<TWhoIs>(EWhoIs.STUDENT);
+
+    const [loading, setLoading] = useState(false);
 
     const initialState = {
         email: '',
@@ -34,14 +39,46 @@ const LoginPage = () => {
 
     const dispatch = useDispatch();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        dispatch(user.actions.update({
-            name: "Luca",
-            email: fields.email,
-            whois: tab,
-            signed: true
-        }));
+        try {
+            setLoading(true);
+            const response = await api.post(`/auth/login`, {
+                email: fields.email,
+                password: fields.password,
+                tag: tab
+            });
+
+            if (!responseCheck(response))
+                throw Error
+
+            const { access_token: token } = await response.json();
+
+            const payload = jwt.decode(token);
+
+            if (!payload.sub)
+                throw Error
+
+            localStorage.setItem('token', token);
+
+            dispatch(user.actions.update({
+                id: payload.sub,
+                email: fields.email,
+                name: payload.username,
+                whois: payload.whois,
+                signed: true
+            }));
+        }
+        catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Não foi possível realizar o login',
+                text: 'Confira seu email e sua senha e tente novamente'
+            });
+        }
+        finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -63,6 +100,7 @@ const LoginPage = () => {
                         label="Email"
                         variant="outlined"
                         name="email"
+                        value={fields.email}
                         onChange={handleChange}
                     />
 
@@ -73,6 +111,7 @@ const LoginPage = () => {
                         variant="outlined"
                         type={showPassword ? "text" : "password"}
                         name="password"
+                        value={fields.password}
                         onChange={handleChange}
                         InputProps={{
                             endAdornment: <PasswordAdornment showPassword={showPassword} setShowPassword={setShowPassword} />,
@@ -83,7 +122,7 @@ const LoginPage = () => {
                     <XLink href="/">Esqueceu sua senha?</XLink>
                 </Row>
                 <Row>
-                    <Button type="submit" >Entrar</Button>
+                    <Button type="submit" loading={loading}>Entrar</Button>
                 </Row>
 
             </XForm>
