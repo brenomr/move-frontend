@@ -5,7 +5,7 @@ export class API {
   private baseURL: string;
 
   constructor(baseURL?: string) {
-    this.baseURL = baseURL || process.env.REACT_APP_API_HOST || 'http://localhost:8080';
+    this.baseURL = baseURL || process.env.REACT_APP_API_HOST || 'http://localhost:3000';
   }
 
   private async processRequest(verb: string, url: string, data?: { [key: string]: any }, headers?: { [key: string]: string }, useAuth: boolean = true) {
@@ -16,7 +16,9 @@ export class API {
         ...(data ? { body: JSON.stringify(data) } : {}),
         headers: {
           ...headers,
-          'Content-Type': 'application/json;charset=utf-8'        },
+          'Content-Type': 'application/json;charset=utf-8',
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        },
         mode: 'cors'
       });
 
