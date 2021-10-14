@@ -128,7 +128,7 @@ function CreateStudent() {
                 throw Error;
             }
             Swal.fire({
-                title: `${namings.trainings.singular} ${isNew ? 'cadastrado' : 'editado'} com sucesso!`,
+                title: `${namings.students.singular} ${isNew ? 'cadastrado' : 'editado'} com sucesso!`,
                 icon: 'success',
                 showCloseButton: true,
                 showCancelButton: true,

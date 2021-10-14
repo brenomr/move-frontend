@@ -135,7 +135,7 @@ function CreateExercise() {
                 throw Error;
             }
             Swal.fire({
-                title: `${namings.trainings.singular} ${isNew ? 'cadastrado' : 'editado'} com sucesso!`,
+                title: `${namings.exercises.singular} ${isNew ? 'cadastrado' : 'editado'} com sucesso!`,
                 icon: 'success',
                 showCloseButton: true,
                 showCancelButton: true,

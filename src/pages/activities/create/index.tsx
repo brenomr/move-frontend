@@ -44,10 +44,6 @@ function CreateActivity() {
         });
     };
 
-    const [showPassword, setShowPassword] = useState(false);
-
-    const [phoneError, setPhoneError] = useState(false);
-
     const [disableButton, setDisableButton] = useState(false);
     const [isNew, setIsNew] = useState(false);
 
@@ -109,7 +105,7 @@ function CreateActivity() {
                 throw Error;
             }
             Swal.fire({
-                title: `${namings.trainings.singular} ${isNew ? 'cadastrado' : 'editado'} com sucesso!`,
+                title: `${namings.activities.singular} ${isNew ? 'cadastrado' : 'editado'} com sucesso!`,
                 icon: 'success',
                 showCloseButton: true,
                 showCancelButton: true,
