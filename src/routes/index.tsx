@@ -13,6 +13,10 @@ import ExercisesList from 'pages/exercises/list';
 import CreateExercise from 'pages/exercises/create';
 import TrainingsList from 'pages/trainings/list';
 import CreateTraining from 'pages/trainings/create';
+import AssessmentsList from 'pages/assessments/list';
+import CreateAssessment from 'pages/assessments/create';
+import CoursesList from 'pages/courses/list';
+import CreateCourse from 'pages/courses/create';
 
 const Routes = () => {
 
@@ -41,6 +45,14 @@ const Routes = () => {
                         <Route path="/treinos" exact component={TrainingsList} />
                         <Route path="/treinos/cadastrar" exact component={CreateTraining} />
                         <Route path="/treinos/:id" exact component={CreateTraining} />
+
+                        <Route path="/avaliacoes" exact component={AssessmentsList} />
+                        <Route path="/avaliacoes/cadastrar" exact component={CreateAssessment} />
+                        <Route path="/avaliacoes/:id" exact component={CreateAssessment} />
+
+                        <Route path="/cursos" exact component={CoursesList} />
+                        <Route path="/cursos/cadastrar" exact component={CreateCourse} />
+                        <Route path="/cursos/:id" exact component={CreateCourse} />
 
                         <Route component={NotFound} />
                     </Switch>
