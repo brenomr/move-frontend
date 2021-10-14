@@ -2,5 +2,7 @@ export const links = {
     students: 'alunos',
     trainings: 'treinos',
     activities: 'atividades',
-    exercises: 'exercicios'
+    exercises: 'exercicios',
+    assessments: 'avaliacoes',
+    courses: 'cursos'
 }

@@ -1,4 +1,4 @@
-import { AccountCircle, DirectionsRun, FitnessCenter, Group, Home, LibraryBooks } from "@material-ui/icons";
+import { AccountCircle, Book, DirectionsRun, FitnessCenter, Group, Home, LibraryBooks } from "@material-ui/icons";
 import { ISideMenuCategory } from "components/SideMenu/index.d";
 
 const menuOptions: ISideMenuCategory[] = [
@@ -17,7 +17,8 @@ const menuOptions: ISideMenuCategory[] = [
             { icon: Group, label: 'Alunos', link: '/alunos' },
             { icon: FitnessCenter, label: 'Treinos', link: '/treinos' },
             { icon: DirectionsRun, label: 'Exercícios', link: '/exercicios' },
-            { icon: LibraryBooks, label: 'Avaliações', link: '/avaliacoes' }
+            { icon: LibraryBooks, label: 'Avaliações', link: '/avaliacoes' },
+            { icon: Book, label: 'Cursos', link: '/cursos' },
         ]
     },
     {

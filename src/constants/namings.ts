@@ -14,5 +14,13 @@ export const namings = {
     exercises: {
         singular: 'Exercício',
         plural: 'Exercícios'
+    },
+    assessments: {
+        singular: 'Avaliação',
+        plural: 'Avaliações'
+    },
+    courses: {
+        singular: 'Curso',
+        plural: 'Cursos'
     }
 }
