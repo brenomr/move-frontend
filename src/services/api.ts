@@ -11,8 +11,6 @@ export class API {
   private async processRequest(verb: string, url: string, data?: { [key: string]: any }, headers?: { [key: string]: string }, useAuth: boolean = true) {
 
     try {
-      console.log('ENV AQUI---');
-      console.log(process.env.REACT_APP_API_HOST);
       const response = await fetch(joinURL(this.baseURL, url), {
         method: verb,
         ...(data ? { body: JSON.stringify(data) } : {}),
