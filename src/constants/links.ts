@@ -4,5 +4,6 @@ export const links = {
     activities: 'atividades',
     exercises: 'exercicios',
     assessments: 'avaliacoes',
-    courses: 'cursos'
+    courses: 'cursos',
+    users: 'usuarios'
 }

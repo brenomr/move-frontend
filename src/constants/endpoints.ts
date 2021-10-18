@@ -4,5 +4,6 @@ export const  endpoints = {
     activities: 'activities',
     exercises: 'exercises',
     assessments: 'assessments',
-    courses: 'courses'
+    courses: 'courses',
+    users: 'users'
 }

@@ -17,6 +17,8 @@ import AssessmentsList from 'pages/assessments/list';
 import CreateAssessment from 'pages/assessments/create';
 import CoursesList from 'pages/courses/list';
 import CreateCourse from 'pages/courses/create';
+import UsersList from 'pages/users/list';
+import CreateUser from 'pages/users/create';
 
 const Routes = () => {
 
@@ -53,6 +55,10 @@ const Routes = () => {
                         <Route path="/cursos" exact component={CoursesList} />
                         <Route path="/cursos/cadastrar" exact component={CreateCourse} />
                         <Route path="/cursos/:id" exact component={CreateCourse} />
+
+                        <Route path="/usuarios" exact component={UsersList} />
+                        <Route path="/usuarios/cadastrar" exact component={CreateUser} />
+                        <Route path="/usuarios/:id" exact component={CreateUser} />
 
                         <Route component={NotFound} />
                     </Switch>

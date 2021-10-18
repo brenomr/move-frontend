@@ -7,7 +7,7 @@ const menuOptions: ISideMenuCategory[] = [
         key: 'user',
         options: [
             { icon: Home, label: 'Home', link: '/' },
-            { icon: AccountCircle, label: 'Meu Perfil', link: '/perfil' },
+            // { icon: AccountCircle, label: 'Meu Perfil', link: '/perfil' },
         ]
     },
     {
@@ -25,7 +25,7 @@ const menuOptions: ISideMenuCategory[] = [
         label: 'Admin',
         key: 'admin',
         options: [
-            { icon: AccountCircle, label: 'Personal', link: '/personal' },
+            { icon: AccountCircle, label: 'Usuários', link: '/usuarios' },
             { icon: DirectionsRun, label: 'Atividades', link: '/atividades' }
         ]
     },

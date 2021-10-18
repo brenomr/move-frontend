@@ -22,5 +22,9 @@ export const namings = {
     courses: {
         singular: 'Curso',
         plural: 'Cursos'
+    },
+    users: {
+        singular: 'Usuário',
+        plural: 'Usuários'
     }
 }
