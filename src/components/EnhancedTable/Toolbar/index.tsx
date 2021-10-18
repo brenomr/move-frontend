@@ -6,6 +6,8 @@ import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import { NavLink } from 'react-router-dom';
+import Title from 'components/Title';
+import styled from 'styled-components';
 
 
 const Action = (data: any, index: number) => (
@@ -28,16 +30,20 @@ const Action = (data: any, index: number) => (
     </React.Fragment>
 );
 
+const XToolbar = styled.div`
+ display: flex;
+`
+
 const Toolbar: React.FC<IToolbar> = (props: IToolbar) => {
     const classes = useToolbarStyles();
 
     return (
-        <ToolbarMUI>
-            <Typography className={classes.title} variant="h4" id="tableTitle" component="div">
+        <XToolbar>
+            <Title >
                 {props.title}
-            </Typography>
+            </Title>
             {props.actions.map(Action)}
-        </ToolbarMUI >
+        </XToolbar >
     )
 }
 

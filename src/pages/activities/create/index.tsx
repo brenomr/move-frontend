@@ -17,6 +17,7 @@ import responseCheck from 'utils/responseCheck';
 import Paper from 'components/Paper';
 import { SaveOutlined } from '@material-ui/icons';
 import { namings } from 'constants/namings';
+import Title from 'components/Title';
 
 interface ParamTypes {
     id: string;
@@ -135,7 +136,7 @@ function CreateActivity() {
 
     return (
         <Paper>
-            <h1>{isNew ? 'Cadastrar' : 'Editar'} {namings.activities.singular}</h1>
+            <Title>{isNew ? 'Cadastrar' : 'Editar'} {namings.activities.singular}</Title>
             <form onSubmit={handleSubmit}>
                 <div className={classes.grid}>
                     <TextField

@@ -20,6 +20,7 @@ import isValidPhone from 'utils/validatePhone';
 import Paper from 'components/Paper';
 import { SaveOutlined } from '@material-ui/icons';
 import { namings } from 'constants/namings';
+import Title from 'components/Title';
 import { Autocomplete } from '@material-ui/lab';
 
 interface ParamTypes {
@@ -165,7 +166,7 @@ function CreateExercise() {
 
     return (
         <Paper>
-            <h1>{isNew ? 'Cadastrar' : 'Editar'} {namings.exercises.singular}</h1>
+            <Title>{isNew ? 'Cadastrar' : 'Editar'} {namings.exercises.singular}</Title>
             <form onSubmit={handleSubmit}>
                 <div className={classes.grid}>
                     <Autocomplete
