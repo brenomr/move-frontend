@@ -197,7 +197,7 @@ function CreateExercise() {
                         onChange={handleChange}
                     />
                     <TextField
-                        label="Intervalo"
+                        label="Intervalo (segundos)"
                         variant="outlined"
                         type="number"
                         name="breaktime"

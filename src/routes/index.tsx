@@ -44,17 +44,17 @@ const Routes = () => {
                         <Route path="/exercicios/cadastrar" exact component={CreateExercise} />
                         <Route path="/exercicios/:id" exact component={CreateExercise} />
 
-                        <Route path="/treinos" exact component={TrainingsList} />
-                        <Route path="/treinos/cadastrar" exact component={CreateTraining} />
-                        <Route path="/treinos/:id" exact component={CreateTraining} />
+                        <Route path="/modelos" exact component={TrainingsList} />
+                        <Route path="/modelos/cadastrar" exact component={CreateTraining} />
+                        <Route path="/modelos/:id" exact component={CreateTraining} />
 
                         <Route path="/avaliacoes" exact component={AssessmentsList} />
                         <Route path="/avaliacoes/cadastrar" exact component={CreateAssessment} />
                         <Route path="/avaliacoes/:id" exact component={CreateAssessment} />
 
-                        <Route path="/cursos" exact component={CoursesList} />
-                        <Route path="/cursos/cadastrar" exact component={CreateCourse} />
-                        <Route path="/cursos/:id" exact component={CreateCourse} />
+                        <Route path="/treinos" exact component={CoursesList} />
+                        <Route path="/treinos/cadastrar" exact component={CreateCourse} />
+                        <Route path="/treinos/:id" exact component={CreateCourse} />
 
                         <Route path="/usuarios" exact component={UsersList} />
                         <Route path="/usuarios/cadastrar" exact component={CreateUser} />

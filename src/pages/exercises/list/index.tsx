@@ -81,7 +81,7 @@ const ExercisesList = () => {
                 { id: 'activity', label: 'Atividade' },
                 { id: 'repetition', label: 'Repetição' },
                 { id: 'serie', label: 'Série' },
-                { id: 'breaktime', label: 'Intervalo' },
+                { id: 'breaktime', label: 'Intervalo (segundos)' },
             ]}
         />
     )

@@ -4,8 +4,8 @@ export const namings = {
         plural: 'Alunos'
     },
     trainings: {
-        singular: 'Treino',
-        plural: 'Treinos'
+        singular: 'Modelo de Treino',
+        plural: 'Modelos de Treino'
     },
     activities: {
         singular: 'Atividade',
@@ -20,8 +20,8 @@ export const namings = {
         plural: 'Avaliações'
     },
     courses: {
-        singular: 'Curso',
-        plural: 'Cursos'
+        singular: 'Treino',
+        plural: 'Treinos'
     },
     users: {
         singular: 'Usuário',
