@@ -19,6 +19,7 @@ import CoursesList from 'pages/courses/list';
 import CreateCourse from 'pages/courses/create';
 import UsersList from 'pages/users/list';
 import CreateUser from 'pages/users/create';
+import CheckTrain from 'pages/checktrain';
 
 const Routes = () => {
 
@@ -59,6 +60,10 @@ const Routes = () => {
                         <Route path="/usuarios" exact component={UsersList} />
                         <Route path="/usuarios/cadastrar" exact component={CreateUser} />
                         <Route path="/usuarios/:id" exact component={CreateUser} />
+
+                        <Route path="/consultar-treino" exact component={CheckTrain} />
+
+                        <Route path="/consultar-avaliacao" exact component={AssessmentsList} />
 
                         <Route component={NotFound} />
                     </Switch>
