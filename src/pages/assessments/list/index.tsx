@@ -9,12 +9,19 @@ import useData from "hooks/useData"
 import { useState } from "react"
 import api from "services/api"
 import Swal from "sweetalert2"
+import { selectUser } from "features/user/selectors"
+import { useSelector } from "react-redux"
+import { EWhoIs } from "features/user/index.d"
 
 const AssessmentsList = () => {
     const base = endpoints.assessments;
     const [orderBy, setOrderBy] = useState<keyof ICell>('name');
     const [loading, setLoading] = useState(true);
     const [data, setParams, update] = useData(base, setLoading);
+
+    const { whois } = useSelector(selectUser);
+
+    const isStudent = whois === EWhoIs.STUDENT;
 
     const handleDelete = async (id: string | null) => {
 
@@ -43,17 +50,17 @@ const AssessmentsList = () => {
     return (
         <Table
             title={namings.assessments.plural}
-            actions={[
+            actions={!isStudent ? [
                 {
                     name: `Cadastrar ${namings.assessments.singular}`,
                     icon: <Add />,
                     link: `${links.assessments}/cadastrar`
                 }
-            ]}
+            ] : []}
             orderBy={orderBy}
             loading={loading}
             rows={data}
-            options={[
+            options={!isStudent ? [
                 {
                     type: 'link',
                     name: 'Editar',
@@ -67,19 +74,21 @@ const AssessmentsList = () => {
                     icon: <Delete />,
                     handle: handleDelete
                 }
-            ]}
+            ] : []}
             selectedCells={(value: IRow) => {
                 return {
                     id: value.id,
                     student: `${value.student.name} ${value.student.surname}`,
                     name: value.name,
-                    description: value.description
+                    description: value.description,
+                    attached_url: <a href={value.attached_url} target="_blank">{value.attached_url}</a>
                 }
             }}
             cells={[
                 { id: 'student', label: 'Aluno' },
                 { id: 'name', label: 'Nome' },
-                { id: 'description', label: 'Descrição' }
+                { id: 'description', label: 'Descrição' },
+                { id: 'attached_url', label: 'Link do Anexo' }
             ]}
         />
     )
