@@ -34,7 +34,6 @@ const menuOptions: ISideMenuCategory[] = [
         key: 'student',
         options: [
             { icon: FitnessCenter, label: 'Consultar Treino', link: '/consultar-treino' },
-            { icon: DirectionsRun, label: 'Realizar Exercícios', link: '/realizar-exercicio' },
             { icon: LibraryBooks, label: 'Consultar Avaliação', link: '/consultar-avaliacao' }
         ]
     }
