@@ -200,7 +200,7 @@ function CreateCourse() {
                         options={trainingList}
                         value={state.training}
                         onChange={(event, value) => handleChangeTraining(value)}
-                        renderInput={(params) => <TextField {...params} required label="Treino" variant="outlined" />}
+                        renderInput={(params) => <TextField {...params} required label="Modelo de Treino" variant="outlined" />}
                     />
                 </div>
                 <div className={classes.grid}>

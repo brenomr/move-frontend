@@ -81,7 +81,7 @@ const CoursesList = () => {
             cells={[
                 { id: 'description', label: 'Descrição' },
                 { id: 'student', label: 'Aluno' },
-                { id: 'training', label: 'Treino' },
+                { id: 'training', label: 'Modelo de Treino' },
                 { id: 'startDate', label: 'Data de Início' }
             ]}
         />
