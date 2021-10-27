@@ -71,11 +71,13 @@ const ActivitiesList = () => {
             selectedCells={(value: IRow) => {
                 return {
                     id: value.id,
+                    image_url: <img src={value.image_url} alt={value.image_url} />,
                     name: value.name,
                     category: value.category
                 }
             }}
             cells={[
+                { id: 'image_url', label: 'Imagem' },
                 { id: 'name', label: 'Nome' },
                 { id: 'category', label: 'Categoria' }
             ]}

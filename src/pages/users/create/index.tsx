@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FormEvent, useCallback } from 'react';
+import React, { useState, useEffect, FormEvent, useCallback, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
@@ -30,6 +30,8 @@ interface ParamTypes {
 function CreateUser() {
     const [id, setId] = useState('');
     const params = useParams<ParamTypes>();
+
+    const form = useRef();
 
     const initialState = {
         id: undefined,
@@ -115,12 +117,17 @@ function CreateUser() {
             let result;
             setDisableButton(true);
 
+            const body = new FormData(form.current);
+
+            if (!isNew)
+                body.append("id", id);
+
             if (isNew) {
-                result = await api.post(`/${endpoints.users}`, state);
+                result = await api.post(`/${endpoints.users}`, body, true);
             }
 
             else {
-                result = await api.put(`/${endpoints.users}/${id}`, state);
+                result = await api.put(`/${endpoints.users}/${id}`, body, true);
             }
 
             if (!responseCheck(result)) {
@@ -158,7 +165,7 @@ function CreateUser() {
     return (
         <Paper>
             <Title>{isNew ? 'Cadastrar' : 'Editar'} {namings.users.singular}</Title>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} ref={form}>
                 <div className={classes.grid}>
                     <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel>Tipo</InputLabel>
@@ -209,17 +216,19 @@ function CreateUser() {
                         value={state.nickname}
                         onChange={handleChange}
                     />
-                    <TextField
-                        label="Senha"
-                        variant="outlined"
-                        type={showPassword ? "text" : "password"}
-                        name="password"
-                        value={state.password}
-                        onChange={handleChange}
-                        InputProps={{
-                            endAdornment: <PasswordAdornment showPassword={showPassword} setShowPassword={setShowPassword} />,
-                        }}
-                    />
+                    {isNew &&
+                        <TextField
+                            label="Senha"
+                            variant="outlined"
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            value={state.password}
+                            onChange={handleChange}
+                            InputProps={{
+                                endAdornment: <PasswordAdornment showPassword={showPassword} setShowPassword={setShowPassword} />,
+                            }}
+                        />
+                    }
                 </div>
                 <div className={classes.grid}>
                     <TextField

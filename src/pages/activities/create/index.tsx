@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FormEvent, useCallback } from 'react';
+import React, { useState, useEffect, FormEvent, useCallback, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
 import { TextField } from '@material-ui/core';
@@ -18,6 +18,7 @@ import Paper from 'components/Paper';
 import { SaveOutlined } from '@material-ui/icons';
 import { namings } from 'constants/namings';
 import Title from 'components/Title';
+import { XImage } from 'components/TrainView/styles';
 
 interface ParamTypes {
     id: string;
@@ -28,13 +29,15 @@ function CreateActivity() {
     const [id, setId] = useState('');
     const params = useParams<ParamTypes>();
 
+    const form = useRef();
+
     const { id: personalId } = useSelector(selectUser);
 
     const initialState = {
         id: undefined,
         name: '',
         category: '',
-        image_url: 'https://media.istockphoto.com/vectors/user-profile-icon-vector-avatar-portrait-symbol-flat-shape-person-vector-id1270368615?k=20&m=1270368615&s=170667a&w=0&h=qpvA8Z6L164ZcKfIyOl-E8fKnfmRZ09Tks7WEoiLawA=',
+        image_url: null,
         user: { id: personalId }
     };
     const [state, setState] = useState(initialState);
@@ -44,6 +47,19 @@ function CreateActivity() {
             [event.target.name]: event.target.value,
         });
     };
+
+
+    const pickFile = (e) => {
+        const formData = new FormData(form.current);
+
+        const file = formData.get('image_url');
+
+        setState(s => ({
+            ...s,
+            image_url: file
+        }))
+
+    }
 
     const [disableButton, setDisableButton] = useState(false);
     const [isNew, setIsNew] = useState(false);
@@ -94,12 +110,18 @@ function CreateActivity() {
             let result;
             setDisableButton(true);
 
+            const body = new FormData(form.current);
+            body.append("user", JSON.stringify({ id: personalId }));
+
+            if (!isNew)
+                body.append("id", id);
+
             if (isNew) {
-                result = await api.post(`/${endpoints.activities}`, state);
+                result = await api.post(`/${endpoints.activities}`, body, true);
             }
 
             else {
-                result = await api.put(`/${endpoints.activities}/${id}`, state);
+                result = await api.put(`/${endpoints.activities}/${id}`, body, true);
             }
 
             if (!responseCheck(result)) {
@@ -133,11 +155,21 @@ function CreateActivity() {
             setDisableButton(false);
         }
     }
-
     return (
         <Paper>
             <Title>{isNew ? 'Cadastrar' : 'Editar'} {namings.activities.singular}</Title>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} ref={form}>
+                <div className={classes.grid}>
+                    <label>Selecione uma imagem ou gif para ilustrar a atividade:</label>
+                </div>
+                <div className={classes.grid}>
+                    <input
+                        accept="image/*"
+                        type="file"
+                        name="image_url"
+                        onChange={pickFile}
+                    />
+                </div>
                 <div className={classes.grid}>
                     <TextField
                         label="Nome"

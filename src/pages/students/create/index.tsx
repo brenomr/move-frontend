@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FormEvent, useCallback } from 'react';
+import React, { useState, useEffect, FormEvent, useCallback, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
 import { TextField } from '@material-ui/core';
@@ -32,6 +32,8 @@ function CreateStudent() {
     const params = useParams<ParamTypes>();
 
     const { id: personalId } = useSelector(selectUser);
+
+    const form = useRef();
 
     const initialState = {
         id: undefined,
@@ -117,12 +119,20 @@ function CreateStudent() {
             let result;
             setDisableButton(true);
 
+            const body = new FormData(form.current);
+
+            if (!isNew)
+                body.append("id", id);
+
+            body.append("whois", initialState.whois);
+            body.append("personals", JSON.stringify(initialState.personals));
+
             if (isNew) {
-                result = await api.post(`/${endpoints.students}`, state);
+                result = await api.post(`/${endpoints.students}`, body, true);
             }
 
             else {
-                result = await api.put(`/${endpoints.students}/${id}`, state);
+                result = await api.put(`/${endpoints.students}/${id}`, body, true);
             }
 
             if (!responseCheck(result)) {
@@ -160,7 +170,7 @@ function CreateStudent() {
     return (
         <Paper>
             <Title>{isNew ? 'Cadastrar' : 'Editar'} {namings.students.singular}</Title>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} ref={form}>
                 <div className={classes.grid}>
                     <TextField
                         label="Nome"

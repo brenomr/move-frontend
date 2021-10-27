@@ -12,6 +12,12 @@ export const XForm = styled.form`
         height: 30%;
         margin-bottom: 40px;
     }
+
+    p{
+        font-size: 12px;
+        opacity: 0.7;
+        margin-bottom: 10px;
+    }
 `;
 
 export const XLink = styled.a`

@@ -17,7 +17,7 @@ import jwt from 'jsonwebtoken';
 
 const LoginPage = () => {
 
-    const [tab, setTab] = useState<TWhoIs>(EWhoIs.STUDENT);
+    const [tab, setTab] = useState();
 
     const [loading, setLoading] = useState(false);
 
@@ -85,6 +85,7 @@ const LoginPage = () => {
         <LoginLayout>
             <XForm onSubmit={handleSubmit}>
                 <img src={Logo} alt="logo" />
+                <p>Escolha como você deseja entrar no sistema:</p>
                 <BottomNavigation
                     showLabels
                     value={tab}
@@ -92,39 +93,43 @@ const LoginPage = () => {
                         setTab(newValue);
                     }}
                 >
-                    <BottomNavigationAction label="Aluno" value={EWhoIs.STUDENT} icon={<Person />} />
-                    <BottomNavigationAction label="Personal" value={EWhoIs.PERSONAL} icon={<FitnessCenter />} />
+                    <BottomNavigationAction label="Aluno" value={EWhoIs.STUDENT} icon={<Person fontSize="large"/>} />
+                    <BottomNavigationAction label="Personal" value={EWhoIs.PERSONAL} icon={<FitnessCenter fontSize="large" />} />
                 </BottomNavigation>
-                <Row>
-                    <TextField
-                        label="Email"
-                        variant="outlined"
-                        name="email"
-                        value={fields.email}
-                        onChange={handleChange}
-                    />
+                {
+                    tab &&
+                    <>
+                        <Row>
+                            <TextField
+                                label="Email"
+                                variant="outlined"
+                                name="email"
+                                value={fields.email}
+                                onChange={handleChange}
+                            />
 
-                </Row>
-                <Row>
-                    <TextField
-                        label="Senha"
-                        variant="outlined"
-                        type={showPassword ? "text" : "password"}
-                        name="password"
-                        value={fields.password}
-                        onChange={handleChange}
-                        InputProps={{
-                            endAdornment: <PasswordAdornment showPassword={showPassword} setShowPassword={setShowPassword} />,
-                        }}
-                    />
-                </Row>
-                <Row>
-                    <XLink href="/">Esqueceu sua senha?</XLink>
-                </Row>
-                <Row>
-                    <Button type="submit" loading={loading}>Entrar</Button>
-                </Row>
-
+                        </Row>
+                        <Row>
+                            <TextField
+                                label="Senha"
+                                variant="outlined"
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                value={fields.password}
+                                onChange={handleChange}
+                                InputProps={{
+                                    endAdornment: <PasswordAdornment showPassword={showPassword} setShowPassword={setShowPassword} />,
+                                }}
+                            />
+                        </Row>
+                        <Row>
+                            <XLink href="/">Esqueceu sua senha?</XLink>
+                        </Row>
+                        <Row>
+                            <Button type="submit" loading={loading}>Entrar</Button>
+                        </Row>
+                    </>
+                }
             </XForm>
         </LoginLayout>
     )

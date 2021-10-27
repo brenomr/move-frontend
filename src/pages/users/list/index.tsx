@@ -9,6 +9,7 @@ import useData from "hooks/useData"
 import { useState } from "react"
 import api from "services/api"
 import Swal from "sweetalert2"
+import { Avatar } from "@material-ui/core"
 
 const UsersList = () => {
     const base = endpoints.users;
@@ -71,6 +72,7 @@ const UsersList = () => {
             selectedCells={(value: IRow) => {
                 return {
                     id: value.id,
+                    photo_url: <Avatar src={value.photo_url} style={{ width: 80, height: 80 }} />,
                     name: value.name,
                     email: value.email,
                     phone: value.phone,
@@ -78,6 +80,7 @@ const UsersList = () => {
                 }
             }}
             cells={[
+                { id: 'photo_url', label: 'Avatar' },
                 { id: 'name', label: 'Nome' },
                 { id: 'email', label: 'Email' },
                 { id: 'phone', label: 'Celular' },
