@@ -7,7 +7,7 @@ const menuOptions: ISideMenuCategory[] = [
         key: 'user',
         options: [
             { icon: Home, label: 'Home', link: '/' },
-            // { icon: AccountCircle, label: 'Meu Perfil', link: '/perfil' },
+            { icon: AccountCircle, label: 'Meu Perfil', link: '/perfil' },
         ]
     },
     {
