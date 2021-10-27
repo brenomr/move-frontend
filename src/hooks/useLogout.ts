@@ -7,6 +7,7 @@ const useLogout = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const handleLogout = async () => {
+        localStorage.removeItem('token');
         dispatch(user.actions.update(initialState));
         if (history)
             history.push("/");
