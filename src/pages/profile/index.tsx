@@ -111,7 +111,7 @@ function Profile() {
         } catch (error) {
             Swal.fire({
                 title: 'Não foi possível salvar',
-                text: 'Tente novamente, caso o erro persista contate o suporte técnico.',
+                text: 'Verifique se o arquivo tem uma extensão válida e o tamanho permitido (1MB) e tente novamente.',
                 icon: 'error',
             });
         } finally {
@@ -123,7 +123,7 @@ function Profile() {
             <Title>Meu Perfil</Title>
             <form onSubmit={handleSubmit} ref={form}>
                 <XProfileContainer >
-                    <label>Você pode editar seu apelido e sua imagem de perfil, basta escolher e clicar em SALVAR</label>
+                    <label>Você pode editar seu apelido e sua imagem de perfil, basta escolher e clicar em SALVAR (tamanho máximo 1MB)</label>
                     <input
                         accept="image/*"
                         type="file"

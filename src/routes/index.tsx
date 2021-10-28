@@ -21,6 +21,7 @@ import UsersList from 'pages/users/list';
 import CreateUser from 'pages/users/create';
 import CheckTrain from 'pages/checktrain';
 import Profile from 'pages/profile';
+import { LandingPage } from 'pages/landing';
 
 const Routes = () => {
 
@@ -73,7 +74,8 @@ const Routes = () => {
                 </MainLayout>
                 :
                 <Switch>
-                    <Route path="/" exact component={LoginPage} />
+                    <Route path="/login" exact component={LoginPage} />
+                    <Route path="/" exact component={LandingPage} />
                     <Route component={NotFound} />
                 </Switch>
             }

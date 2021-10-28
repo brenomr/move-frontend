@@ -160,7 +160,7 @@ function CreateActivity() {
             <Title>{isNew ? 'Cadastrar' : 'Editar'} {namings.activities.singular}</Title>
             <form onSubmit={handleSubmit} ref={form}>
                 <div className={classes.grid}>
-                    <label>Selecione uma imagem ou gif para ilustrar a atividade:</label>
+                    <label>Selecione uma imagem ou gif para ilustrar a atividade (tamanho máximo 1MB):</label>
                 </div>
                 <div className={classes.grid}>
                     <input

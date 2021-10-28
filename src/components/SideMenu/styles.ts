@@ -8,7 +8,6 @@ export const XListContainer = styled(Box)`
     align-items: center;
     width: 240px;
     background: ${theme.colors.white};
-    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
     padding: 10px 0;
 
     p{
@@ -20,10 +19,23 @@ export const XListContainer = styled(Box)`
         text-align: center;
     }
 
-    svg, a{
+    svg, a,li{
         color: ${theme.colors.grayDark}bb;
         font-weight: ${theme.fonts.weight.bolder};
         text-decoration: none;
+        transition: all ease-in-out 0.2s;
+    }
+    a#active{
+        li{
+            background: ${theme.colors.primaryDark};
+        }
+
+        &,svg,li{
+            color: ${theme.colors.white};
+            span{
+                font-weight: 500 !important;
+            }
+        }
     }
     ul{
         padding: 0;

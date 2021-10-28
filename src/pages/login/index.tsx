@@ -4,6 +4,7 @@ import Row from 'components/Row';
 import user from 'features/user';
 import LoginLayout from 'layout/login';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { XForm, XLink } from './styles';
 import Logo from 'assets/images/logo.jpg';
 import { FitnessCenter, Person } from '@material-ui/icons';
@@ -20,6 +21,8 @@ const LoginPage = () => {
     const [tab, setTab] = useState();
 
     const [loading, setLoading] = useState(false);
+
+    const history = useHistory();
 
     const initialState = {
         email: '',
@@ -61,6 +64,8 @@ const LoginPage = () => {
 
             localStorage.setItem('token', token);
 
+            history.push("/");
+
             dispatch(user.actions.update({
                 id: payload.sub,
                 email: fields.email,
@@ -93,7 +98,7 @@ const LoginPage = () => {
                         setTab(newValue);
                     }}
                 >
-                    <BottomNavigationAction label="Aluno" value={EWhoIs.STUDENT} icon={<Person fontSize="large"/>} />
+                    <BottomNavigationAction label="Aluno" value={EWhoIs.STUDENT} icon={<Person fontSize="large" />} />
                     <BottomNavigationAction label="Personal" value={EWhoIs.PERSONAL} icon={<FitnessCenter fontSize="large" />} />
                 </BottomNavigation>
                 {
