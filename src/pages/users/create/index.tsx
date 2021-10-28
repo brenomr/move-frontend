@@ -23,6 +23,7 @@ import { namings } from 'constants/namings';
 import Title from 'components/Title';
 import { maskPhoneNumber, maskCEP } from 'masks/masks';
 import { removeMask } from 'masks/removeMask';
+import { brazilStates } from 'constants/brazilStates';
 
 interface ParamTypes {
     id: string;
@@ -304,14 +305,18 @@ function CreateUser() {
                         value={state.city}
                         onChange={handleChange}
                     />
-                    <TextField
-                        label="Estado"
-                        required
-                        variant="outlined"
-                        name="uf"
-                        value={state.uf}
-                        onChange={handleChange}
-                    />
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel>Estado</InputLabel>
+                        <Select
+                            required
+                            name="uf"
+                            value={state.uf}
+                            onChange={handleChange}
+                            label="Estado"
+                        >
+                            {brazilStates.map(state => <MenuItem value={state.value}>{state.label}</MenuItem>)}
+                        </Select>
+                    </FormControl>
                     <TextField
                         label="Complemento"
                         variant="outlined"
