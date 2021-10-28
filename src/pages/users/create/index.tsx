@@ -21,6 +21,8 @@ import Paper from 'components/Paper';
 import { SaveOutlined } from '@material-ui/icons';
 import { namings } from 'constants/namings';
 import Title from 'components/Title';
+import { maskPhoneNumber, maskCEP } from 'masks/masks';
+import { removeMask } from 'masks/removeMask';
 
 interface ParamTypes {
     id: string;
@@ -54,9 +56,16 @@ function CreateUser() {
     };
     const [state, setState] = useState(initialState);
     const handleChange = (event: React.ChangeEvent<any>) => {
+        let value = event.target.value;
+        switch (event.target.name) {
+            case 'phone': value = maskPhoneNumber(value);
+                break;
+            case 'cep': value = maskCEP(value);
+                break;
+        }
         setState({
             ...state,
-            [event.target.name]: event.target.value,
+            [event.target.name]: value,
         });
     };
 
@@ -121,6 +130,8 @@ function CreateUser() {
 
             if (!isNew)
                 body.append("id", id);
+
+            body.set("phone", removeMask(state.phone));
 
             if (isNew) {
                 result = await api.post(`/${endpoints.users}`, body, true);

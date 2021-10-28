@@ -21,6 +21,8 @@ import Paper from 'components/Paper';
 import { SaveOutlined } from '@material-ui/icons';
 import { namings } from 'constants/namings';
 import Title from 'components/Title';
+import { maskCEP, maskPhoneNumber } from 'masks/masks';
+import { removeMask } from 'masks/removeMask';
 
 interface ParamTypes {
     id: string;
@@ -56,9 +58,16 @@ function CreateStudent() {
     };
     const [state, setState] = useState(initialState);
     const handleChange = (event: React.ChangeEvent<any>) => {
+        let value = event.target.value;
+        switch (event.target.name) {
+            case 'phone': value = maskPhoneNumber(value);
+                break;
+            case 'cep': value = maskCEP(value);
+                break;
+        }
         setState({
             ...state,
-            [event.target.name]: event.target.value,
+            [event.target.name]: value,
         });
     };
 
@@ -126,6 +135,8 @@ function CreateStudent() {
 
             body.append("whois", initialState.whois);
             body.append("personals", JSON.stringify(initialState.personals));
+
+            body.set("phone", removeMask(state.phone));
 
             if (isNew) {
                 result = await api.post(`/${endpoints.students}`, body, true);
@@ -198,17 +209,19 @@ function CreateStudent() {
                         value={state.nickname}
                         onChange={handleChange}
                     />
-                    <TextField
-                        label="Senha"
-                        variant="outlined"
-                        type={showPassword ? "text" : "password"}
-                        name="password"
-                        value={state.password}
-                        onChange={handleChange}
-                        InputProps={{
-                            endAdornment: <PasswordAdornment showPassword={showPassword} setShowPassword={setShowPassword} />,
-                        }}
-                    />
+                    {isNew &&
+                        <TextField
+                            label="Senha"
+                            variant="outlined"
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            value={state.password}
+                            onChange={handleChange}
+                            InputProps={{
+                                endAdornment: <PasswordAdornment showPassword={showPassword} setShowPassword={setShowPassword} />,
+                            }}
+                        />
+                    }
                 </div>
                 <div className={classes.grid}>
                     <TextField
@@ -225,7 +238,7 @@ function CreateStudent() {
                         helperText={phoneError && "Insira um número válido"}
                         variant="outlined"
                         name="phone"
-                        value={state.phone}
+                        value={maskPhoneNumber(state.phone)}
                         onChange={handleChange}
                     />
                 </div>
