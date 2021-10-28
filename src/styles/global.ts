@@ -92,8 +92,7 @@ export default createGlobalStyle`
      }
  
      a {
-       color: ${theme.colors.primary};
-       text-decoration: none;
+       color: ${theme.colors.secondary};
        &:hover{
          color: ${theme.colors.primary};
        }

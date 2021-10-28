@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FormEvent, useCallback } from 'react';
+import React, { useState, useEffect, FormEvent, useCallback, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
 import { TextField } from '@material-ui/core';
@@ -29,13 +29,15 @@ function CreateAssessment() {
     const [id, setId] = useState('');
     const params = useParams<ParamTypes>();
 
+    const form = useRef();
+
     const { id: personalId } = useSelector(selectUser);
 
     const initialState = {
         id: undefined,
         name: '',
         description: '',
-        attached_url: '',
+        attached_url: '' as any,
         personal: { id: personalId },
         student: null as any
     };
@@ -53,6 +55,18 @@ function CreateAssessment() {
             student: value,
         });
     };
+
+    const pickFile = (e) => {
+        const formData = new FormData(form.current);
+
+        const file = formData.get('attached_url');
+
+        setState(s => ({
+            ...s,
+            attached_url: file
+        }))
+
+    }
 
     const [studentList, setStudentList] = useState<any[]>([]);
 
@@ -121,12 +135,19 @@ function CreateAssessment() {
             let result;
             setDisableButton(true);
 
+            const body = new FormData(form.current);
+            body.append("personal", JSON.stringify({ id: personalId }));
+            body.append("student", JSON.stringify(state.student));
+
+            if (!isNew)
+                body.append("id", id);
+
             if (isNew) {
-                result = await api.post(`/${endpoints.assessments}`, state);
+                result = await api.post(`/${endpoints.assessments}`, body, true);
             }
 
             else {
-                result = await api.put(`/${endpoints.assessments}/${id}`, state);
+                result = await api.put(`/${endpoints.assessments}/${id}`, body, true);
             }
 
             if (!responseCheck(result)) {
@@ -164,7 +185,18 @@ function CreateAssessment() {
     return (
         <Paper>
             <Title>{isNew ? 'Cadastrar' : 'Editar'} {namings.assessments.singular}</Title>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} ref={form}>
+                <div className={classes.grid}>
+                    <label>Selecione o anexo da avalição em imagem ou pdf:</label>
+                </div>
+                <div className={classes.grid}>
+                    <input
+                        accept=".png, .jpg, .jpeg, .pdf, ,.gif"
+                        type="file"
+                        name="attached_url"
+                        onChange={pickFile}
+                    />
+                </div>
                 <div className={classes.grid}>
                     <Autocomplete
                         getOptionLabel={(label) => `${label.name} ${label.surname}`}
@@ -189,13 +221,6 @@ function CreateAssessment() {
                         variant="outlined"
                         name="description"
                         value={state.description}
-                        onChange={handleChange}
-                    />
-                    <TextField
-                        label="URL do Anexo"
-                        variant="outlined"
-                        name="attached_url"
-                        value={state.attached_url}
                         onChange={handleChange}
                     />
                 </div>

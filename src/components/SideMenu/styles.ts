@@ -6,7 +6,7 @@ export const XListContainer = styled(Box)`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 250px;
+    width: 240px;
     background: ${theme.colors.white};
     box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
     padding: 10px 0;
@@ -22,7 +22,8 @@ export const XListContainer = styled(Box)`
 
     svg, a{
         color: ${theme.colors.grayDark}bb;
-        font-weight: ${theme.fonts.weight.bolder}
+        font-weight: ${theme.fonts.weight.bolder};
+        text-decoration: none;
     }
     ul{
         padding: 0;

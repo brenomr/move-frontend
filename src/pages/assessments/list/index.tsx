@@ -81,7 +81,7 @@ const AssessmentsList = () => {
                     student: `${value.student.name} ${value.student.surname}`,
                     name: value.name,
                     description: value.description,
-                    attached_url: <a href={value.attached_url} target="_blank">{value.attached_url}</a>
+                    attached_url: <a href={value.attached_url} target="_blank">Baixar anexo</a>
                 }
             }}
             cells={[
