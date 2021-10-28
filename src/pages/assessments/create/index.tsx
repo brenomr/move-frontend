@@ -187,7 +187,7 @@ function CreateAssessment() {
             <Title>{isNew ? 'Cadastrar' : 'Editar'} {namings.assessments.singular}</Title>
             <form onSubmit={handleSubmit} ref={form}>
                 <div className={classes.grid}>
-                    <label>Selecione o anexo da avalição em imagem ou pdf (tamanho máximo 1MB):</label>
+                    <label>Selecione o anexo da avalição em imagem ou pdf (tamanho máximo 3MB):</label>
                 </div>
                 <div className={classes.grid}>
                     <input
