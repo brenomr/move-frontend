@@ -9,6 +9,7 @@ import useData from "hooks/useData"
 import { useState } from "react"
 import api from "services/api"
 import Swal from "sweetalert2"
+import { dateToString } from "utils/dateUtils"
 
 const CoursesList = () => {
     const base = endpoints.courses;
@@ -74,13 +75,13 @@ const CoursesList = () => {
                     description: value.description,
                     student: `${value.student.name} ${value.student.surname}`,
                     training: value.training.title,
-                    startDate: value.startDate,
+                    startDate: dateToString(value.startDate),
                 }
             }}
             cells={[
                 { id: 'description', label: 'Descrição' },
                 { id: 'student', label: 'Aluno' },
-                { id: 'training', label: 'Treino' },
+                { id: 'training', label: 'Modelo de Treino' },
                 { id: 'startDate', label: 'Data de Início' }
             ]}
         />

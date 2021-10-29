@@ -5,7 +5,11 @@ interface ITitle {
     children: ReactNode;
 }
 
-const XTitle = styled.h2``;
+const XTitle = styled.h2`
+    flex: '1 1 100%';
+    width: 100%;
+    margin-bottom: 20px;
+`;
 
 const Title = ({ children }: ITitle) => (<XTitle>{children}</XTitle>);
 

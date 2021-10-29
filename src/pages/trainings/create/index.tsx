@@ -17,6 +17,7 @@ import responseCheck from 'utils/responseCheck';
 import Paper from 'components/Paper';
 import { SaveOutlined } from '@material-ui/icons';
 import { namings } from 'constants/namings';
+import Title from 'components/Title';
 import { Autocomplete } from '@material-ui/lab';
 
 interface ParamTypes {
@@ -161,12 +162,13 @@ function CreateTraining() {
 
     return (
         <Paper>
-            <h1>{isNew ? 'Cadastrar' : 'Editar'} {namings.trainings.singular}</h1>
+            <Title>{isNew ? 'Cadastrar' : 'Editar'} {namings.trainings.singular}</Title>
             <form onSubmit={handleSubmit}>
                 <div className={classes.grid}>
                     <TextField
                         label="Título"
                         variant="outlined"
+                        required
                         name="title"
                         value={state.title}
                         onChange={handleChange}
@@ -184,12 +186,13 @@ function CreateTraining() {
                 </div>
                 <div className={classes.grid}>
                     <Autocomplete
+
                         multiple
                         getOptionLabel={(label) => `${label.activity.name}: ${label.repetition} repetições, ${label.serie} séries`}
                         options={exerciseList}
                         value={state.exercises}
                         onChange={(event, value) => handleChangeExercises(value)}
-                        renderInput={(params) => <TextField {...params} label="Lista de Exercícios" variant="outlined" />}
+                        renderInput={(params) => <TextField {...params} label="Lista de Exercícios" variant="outlined" required={state.exercises.length === 0} />}
                     />
                 </div>
                 <div className={classes.button}>

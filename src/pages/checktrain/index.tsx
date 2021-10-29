@@ -12,8 +12,8 @@ import Swal from 'sweetalert2';
 import api from 'services/api';
 import responseCheck from 'utils/responseCheck';
 
-const HomePage = () => {
-    const { email, name, whois, id } = useSelector(selectUser);
+const CheckTrain = () => {
+    const { whois, id } = useSelector(selectUser);
 
     const [course, setCourse] = useState<ITrainView>();
 
@@ -38,18 +38,12 @@ const HomePage = () => {
     return (
         <Paper>
             <Title>
-                Bem vindo a Move, {name} :)
+                Consulte seu último treino 💪
             </Title>
-            {isStudent ?
-                <TrainView {...course} />
-                :
-                <>
-                    <div>{email}</div>
-                    <img src={WelcomeImage} alt="Bem-vindo!" style={{ height: 500 }} />
-                </>
-            }
+
+            <TrainView {...course} />
         </Paper>
     )
 }
 
-export default HomePage
+export default CheckTrain

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from 'styles/theme';
 
 export const XForm = styled.form`
     display: flex;
@@ -11,6 +12,15 @@ export const XForm = styled.form`
     img{
         height: 30%;
         margin-bottom: 40px;
+    }
+
+    p{
+        font-size: 12px;
+        opacity: 0.7;
+        margin-bottom: 10px;
+    }
+    .MuiBottomNavigationAction-root-2.Mui-selected{
+        color: ${theme.colors.secondary}
     }
 `;
 

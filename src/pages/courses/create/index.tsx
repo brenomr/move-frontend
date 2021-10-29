@@ -17,6 +17,7 @@ import responseCheck from 'utils/responseCheck';
 import Paper from 'components/Paper';
 import { SaveOutlined } from '@material-ui/icons';
 import { namings } from 'constants/namings';
+import Title from 'components/Title';
 import { Autocomplete } from '@material-ui/lab';
 import { unformatDate } from 'utils/dateUtils';
 
@@ -184,7 +185,7 @@ function CreateCourse() {
 
     return (
         <Paper>
-            <h1>{isNew ? 'Cadastrar' : 'Editar'} {namings.courses.singular}</h1>
+            <Title>{isNew ? 'Cadastrar' : 'Editar'} {namings.courses.singular}</Title>
             <form onSubmit={handleSubmit}>
                 <div className={classes.grid}>
                     <Autocomplete
@@ -199,7 +200,7 @@ function CreateCourse() {
                         options={trainingList}
                         value={state.training}
                         onChange={(event, value) => handleChangeTraining(value)}
-                        renderInput={(params) => <TextField {...params} required label="Treino" variant="outlined" />}
+                        renderInput={(params) => <TextField {...params} required label="Modelo de Treino" variant="outlined" />}
                     />
                 </div>
                 <div className={classes.grid}>

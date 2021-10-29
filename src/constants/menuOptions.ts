@@ -15,17 +15,17 @@ const menuOptions: ISideMenuCategory[] = [
         key: 'personal',
         options: [
             { icon: Group, label: 'Alunos', link: '/alunos' },
-            { icon: FitnessCenter, label: 'Treinos', link: '/treinos' },
             { icon: DirectionsRun, label: 'Exercícios', link: '/exercicios' },
+            { icon: Book, label: 'Modelos de Treino', link: '/modelos' },
+            { icon: FitnessCenter, label: 'Treinos', link: '/treinos' },
             { icon: LibraryBooks, label: 'Avaliações', link: '/avaliacoes' },
-            { icon: Book, label: 'Cursos', link: '/cursos' },
         ]
     },
     {
         label: 'Admin',
         key: 'admin',
         options: [
-            { icon: AccountCircle, label: 'Personal', link: '/personal' },
+            { icon: AccountCircle, label: 'Usuários', link: '/usuarios' },
             { icon: DirectionsRun, label: 'Atividades', link: '/atividades' }
         ]
     },
@@ -34,7 +34,6 @@ const menuOptions: ISideMenuCategory[] = [
         key: 'student',
         options: [
             { icon: FitnessCenter, label: 'Consultar Treino', link: '/consultar-treino' },
-            { icon: DirectionsRun, label: 'Realizar Exercícios', link: '/realizar-exercicio' },
             { icon: LibraryBooks, label: 'Consultar Avaliação', link: '/consultar-avaliacao' }
         ]
     }

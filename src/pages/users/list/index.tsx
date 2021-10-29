@@ -9,17 +9,18 @@ import useData from "hooks/useData"
 import { useState } from "react"
 import api from "services/api"
 import Swal from "sweetalert2"
+import { Avatar } from "@material-ui/core"
 
-const ExercisesList = () => {
-    const base = endpoints.exercises;
-    const [orderBy, setOrderBy] = useState<keyof ICell>('activity');
+const UsersList = () => {
+    const base = endpoints.users;
+    const [orderBy, setOrderBy] = useState<keyof ICell>('name');
     const [loading, setLoading] = useState(true);
     const [data, setParams, update] = useData(base, setLoading);
 
     const handleDelete = async (id: string | null) => {
 
         const result = await Swal.fire({
-            title: `Você tem certeza que deseja excluir este ${namings.exercises.singular}`,
+            title: `Você tem certeza que deseja excluir este ${namings.users.singular}`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: "#418107",
@@ -28,7 +29,7 @@ const ExercisesList = () => {
         })
         if (result.isConfirmed) {
             try {
-                await api.delete(`/${endpoints.exercises}/${id}`);
+                await api.delete(`/${endpoints.users}/${id}`);
                 update();
             } catch (error) {
                 Swal.fire({
@@ -42,12 +43,12 @@ const ExercisesList = () => {
 
     return (
         <Table
-            title={namings.exercises.plural}
+            title={namings.users.plural}
             actions={[
                 {
-                    name: `Cadastrar ${namings.exercises.singular}`,
+                    name: `Cadastrar ${namings.users.singular}`,
                     icon: <Add />,
-                    link: `${links.exercises}/cadastrar`
+                    link: `${links.users}/cadastrar`
                 }
             ]}
             orderBy={orderBy}
@@ -58,7 +59,7 @@ const ExercisesList = () => {
                     type: 'link',
                     name: 'Editar',
                     icon: <Edit />,
-                    link: `${links.exercises}/`,
+                    link: `${links.users}/`,
                     handle: () => { }
                 },
                 {
@@ -71,20 +72,22 @@ const ExercisesList = () => {
             selectedCells={(value: IRow) => {
                 return {
                     id: value.id,
-                    activity: value.activity.name,
-                    repetition: value.repetition,
-                    serie: value.serie,
-                    breaktime: value.breaktime
+                    photo_url: <Avatar src={value.photo_url} style={{ width: 80, height: 80 }} />,
+                    name: value.name,
+                    email: value.email,
+                    phone: value.phone,
+                    cref: value.cref
                 }
             }}
             cells={[
-                { id: 'activity', label: 'Atividade' },
-                { id: 'repetition', label: 'Repetição' },
-                { id: 'serie', label: 'Série' },
-                { id: 'breaktime', label: 'Intervalo (segundos)' },
+                { id: 'photo_url', label: 'Avatar' },
+                { id: 'name', label: 'Nome' },
+                { id: 'email', label: 'Email' },
+                { id: 'phone', label: 'Celular' },
+                { id: 'cref', label: 'CREF' },
             ]}
         />
     )
 }
 
-export default ExercisesList;
+export default UsersList;

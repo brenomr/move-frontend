@@ -6,21 +6,21 @@ import Option from './option';
 
 const StyledMenu = withStyles({
   paper: {
-      border: '1px solid #d3d4d5',
+    border: '1px solid #d3d4d5',
   },
 })((props: MenuProps) => (
   <Menu
-      elevation={0}
-      getContentAnchorEl={null}
-      anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-      }}
-      transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-      }}
-      {...props}
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'center',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+    {...props}
   />
 ));
 
@@ -37,33 +37,37 @@ export default function Options(props: IOptions) {
 
   return (
     <>
-      <IconButton
-        aria-label="more"
-        aria-controls="long-menu"
-        aria-haspopup="true"
-        onClick={(e) => { handleClick(e) }}
-      >
-        <MoreVertIcon />
-      </IconButton>
-      <StyledMenu
-        id="customized-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      > 
-        {props.options.map((option, index) => (
-          <Option
-            key={index}
-            type={option.type}
-            id={props.id}
-            icon={option.icon}
-            name={option.name}
-            handle={option.handle}
-            link={option.link}
-          />
-        ))}
-      </StyledMenu>
-  </>
+      {(props.options.length !== 0) &&
+        <>
+          <IconButton
+            aria-label="more"
+            aria-controls="long-menu"
+            aria-haspopup="true"
+            onClick={(e) => { handleClick(e) }}
+          >
+            <MoreVertIcon />
+          </IconButton>
+          <StyledMenu
+            id="customized-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            {props.options.map((option, index) => (
+              <Option
+                key={index}
+                type={option.type}
+                id={props.id}
+                icon={option.icon}
+                name={option.name}
+                handle={option.handle}
+                link={option.link}
+              />
+            ))}
+          </StyledMenu>
+        </>
+      }
+    </>
   )
 }

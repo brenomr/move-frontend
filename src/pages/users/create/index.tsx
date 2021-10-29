@@ -21,7 +21,7 @@ import Paper from 'components/Paper';
 import { SaveOutlined } from '@material-ui/icons';
 import { namings } from 'constants/namings';
 import Title from 'components/Title';
-import { maskCEP, maskPhoneNumber } from 'masks/masks';
+import { maskPhoneNumber, maskCEP } from 'masks/masks';
 import { removeMask } from 'masks/removeMask';
 import { brazilStates } from 'constants/brazilStates';
 
@@ -30,21 +30,20 @@ interface ParamTypes {
 }
 
 
-function CreateStudent() {
+function CreateUser() {
     const [id, setId] = useState('');
     const params = useParams<ParamTypes>();
-
-    const { id: personalId } = useSelector(selectUser);
 
     const form = useRef();
 
     const initialState = {
         id: undefined,
-        whois: EWhoIs.STUDENT,
+        whois: EWhoIs.PERSONAL,
         password: '',
         name: '',
         surname: '',
         email: '',
+        cref: '',
         street: '',
         number: '',
         district: '',
@@ -55,7 +54,6 @@ function CreateStudent() {
         phone: '',
         nickname: '',
         photo_url: 'https://media.istockphoto.com/vectors/user-profile-icon-vector-avatar-portrait-symbol-flat-shape-person-vector-id1270368615?k=20&m=1270368615&s=170667a&w=0&h=qpvA8Z6L164ZcKfIyOl-E8fKnfmRZ09Tks7WEoiLawA=',
-        personals: [{ id: personalId }]
     };
     const [state, setState] = useState(initialState);
     const handleChange = (event: React.ChangeEvent<any>) => {
@@ -100,7 +98,7 @@ function CreateStudent() {
         if (!isNew) {
             if (id) {
                 (async () => {
-                    const response = await api.get(`/${endpoints.students}/${id}`);
+                    const response = await api.get(`/${endpoints.users}/${id}`);
                     if (responseCheck(response)) {
                         const data = await response.json();
                         setState(data);
@@ -112,7 +110,7 @@ function CreateStudent() {
                             title: 'Erro ao carregar a página',
                             text: 'Verifique se o registro consultado realmente existe, caso o erro persista contate o suporte técnico.'
                         }).then(() => {
-                            history.push(`/${endpoints.students}`);
+                            history.push(`/${endpoints.users}`);
                         });
                     }
                 })();
@@ -134,24 +132,21 @@ function CreateStudent() {
             if (!isNew)
                 body.append("id", id);
 
-            body.append("whois", initialState.whois);
-            body.append("personals", JSON.stringify(initialState.personals));
-
             body.set("phone", removeMask(state.phone));
 
             if (isNew) {
-                result = await api.post(`/${endpoints.students}`, body, true);
+                result = await api.post(`/${endpoints.users}`, body, true);
             }
 
             else {
-                result = await api.put(`/${endpoints.students}/${id}`, body, true);
+                result = await api.put(`/${endpoints.users}/${id}`, body, true);
             }
 
             if (!responseCheck(result)) {
                 throw Error;
             }
             Swal.fire({
-                title: `${namings.students.singular} ${isNew ? 'cadastrado' : 'editado'} com sucesso!`,
+                title: `${namings.users.singular} ${isNew ? 'cadastrado' : 'editado'} com sucesso!`,
                 icon: 'success',
                 showCloseButton: true,
                 showCancelButton: true,
@@ -181,8 +176,32 @@ function CreateStudent() {
 
     return (
         <Paper>
-            <Title>{isNew ? 'Cadastrar' : 'Editar'} {namings.students.singular}</Title>
+            <Title>{isNew ? 'Cadastrar' : 'Editar'} {namings.users.singular}</Title>
             <form onSubmit={handleSubmit} ref={form}>
+                <div className={classes.grid}>
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel>Tipo</InputLabel>
+                        <Select
+                            required
+                            name="whois"
+                            value={state.whois}
+                            onChange={handleChange}
+                            label="Tipo"
+                        >
+                            <MenuItem value=""><em>Selecione uma opção</em></MenuItem>
+                            <MenuItem value={EWhoIs.PERSONAL} >Personal</MenuItem>
+                            <MenuItem value={EWhoIs.ADMIN} >Admin</MenuItem>
+                        </Select>
+
+                    </FormControl>
+                    <TextField
+                        label="CREF"
+                        variant="outlined"
+                        name="cref"
+                        value={state.cref}
+                        onChange={handleChange}
+                    />
+                </div>
                 <div className={classes.grid}>
                     <TextField
                         label="Nome"
@@ -200,7 +219,6 @@ function CreateStudent() {
                         value={state.surname}
                         onChange={handleChange}
                     />
-
                 </div>
                 <div className={classes.grid}>
                     <TextField
@@ -239,7 +257,7 @@ function CreateStudent() {
                         helperText={phoneError && "Insira um número válido"}
                         variant="outlined"
                         name="phone"
-                        value={maskPhoneNumber(state.phone)}
+                        value={state.phone}
                         onChange={handleChange}
                     />
                 </div>
@@ -329,4 +347,4 @@ function CreateStudent() {
     )
 }
 
-export default CreateStudent;
+export default CreateUser;

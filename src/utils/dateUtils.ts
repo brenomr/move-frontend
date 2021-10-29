@@ -1,3 +1,6 @@
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+
 export const unformatDate = (date: string) => {
   if (date) {
     return date.split('T')[0];
@@ -14,4 +17,8 @@ export const formatDate = (date: string) => {
   }
   else
     return null
+}
+
+export const dateToString = (date: string) => {
+  return format(new Date(date), 'dd\'/\'MM\'/\'yyyy', { locale: ptBR })
 }

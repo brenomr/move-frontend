@@ -4,7 +4,6 @@ import theme from 'styles/theme';
 export const XContainer = styled.div`
     height: 100vh;
     display: flex;
-    background: ${theme.background};
 `;
 
 export const XContent = styled.div`
