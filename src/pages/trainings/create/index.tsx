@@ -168,6 +168,7 @@ function CreateTraining() {
                     <TextField
                         label="Título"
                         variant="outlined"
+                        required
                         name="title"
                         value={state.title}
                         onChange={handleChange}
@@ -185,12 +186,13 @@ function CreateTraining() {
                 </div>
                 <div className={classes.grid}>
                     <Autocomplete
+
                         multiple
                         getOptionLabel={(label) => `${label.activity.name}: ${label.repetition} repetições, ${label.serie} séries`}
                         options={exerciseList}
                         value={state.exercises}
                         onChange={(event, value) => handleChangeExercises(value)}
-                        renderInput={(params) => <TextField {...params} label="Lista de Exercícios" variant="outlined" />}
+                        renderInput={(params) => <TextField {...params} label="Lista de Exercícios" variant="outlined" required={state.exercises.length === 0} />}
                     />
                 </div>
                 <div className={classes.button}>
