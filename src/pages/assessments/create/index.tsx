@@ -208,6 +208,7 @@ function CreateAssessment() {
                     <TextField
                         label="Título"
                         variant="outlined"
+                        placeholder="Exemplo: Anamnese, Avaliação de treino, relatório de treino etc"
                         required
                         name="name"
                         value={state.name}
