@@ -63,7 +63,7 @@ export default createGlobalStyle`
  
 
    .swal2-modal{
-     font-family: ${theme.fonts.secondary};
+     font-family: ${theme.fonts.primary};
    }
    .swal2-styled.swal2-confirm{
      background-color: ${theme.colors.secondary};
