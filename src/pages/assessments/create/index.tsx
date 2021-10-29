@@ -206,7 +206,7 @@ function CreateAssessment() {
                         renderInput={(params) => <TextField {...params} required label="Aluno" variant="outlined" />}
                     />
                     <TextField
-                        label="Nome"
+                        label="Título"
                         variant="outlined"
                         required
                         name="name"
