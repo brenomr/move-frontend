@@ -197,6 +197,8 @@ function CreateUser() {
                     <TextField
                         label="CREF"
                         variant="outlined"
+                        required
+                        placeholder="Exemplo: CREF123456PSP"
                         name="cref"
                         value={state.cref}
                         onChange={handleChange}
@@ -224,6 +226,7 @@ function CreateUser() {
                     <TextField
                         label="Apelido"
                         variant="outlined"
+                        required
                         name="nickname"
                         value={state.nickname}
                         onChange={handleChange}
@@ -232,6 +235,7 @@ function CreateUser() {
                         <TextField
                             label="Senha"
                             variant="outlined"
+                            required
                             type={showPassword ? "text" : "password"}
                             name="password"
                             value={state.password}

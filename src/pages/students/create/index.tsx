@@ -205,6 +205,7 @@ function CreateStudent() {
                 <div className={classes.grid}>
                     <TextField
                         label="Apelido"
+                        required
                         variant="outlined"
                         name="nickname"
                         value={state.nickname}
@@ -213,6 +214,7 @@ function CreateStudent() {
                     {isNew &&
                         <TextField
                             label="Senha"
+                            required
                             variant="outlined"
                             type={showPassword ? "text" : "password"}
                             name="password"
@@ -228,6 +230,7 @@ function CreateStudent() {
                     <TextField
                         label="Email"
                         required
+                        type="email"
                         variant="outlined"
                         name="email"
                         value={state.email}

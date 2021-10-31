@@ -168,6 +168,8 @@ function CreateActivity() {
                         type="file"
                         name="image_url"
                         onChange={pickFile}
+                        required
+                        style={{ width: 300 }}
                     />
                 </div>
                 <div className={classes.grid}>

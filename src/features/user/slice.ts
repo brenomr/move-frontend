@@ -20,6 +20,7 @@ const slice: Slice<IUserState> = createSlice({
       state.name = action.payload.name;
       state.signed = action.payload.signed;
       state.whois = action.payload.whois;
+      state.avatar = action.payload.avatar;
     }
   },
 })

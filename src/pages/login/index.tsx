@@ -71,6 +71,7 @@ const LoginPage = () => {
                 email: fields.email,
                 name: payload.username,
                 whois: payload.whois,
+                avatar: payload.avatar,
                 signed: true
             }));
         }
@@ -84,6 +85,10 @@ const LoginPage = () => {
         finally {
             setLoading(false);
         }
+    }
+
+    const showAlert = () => {
+        alert("Desculpe-nos, serviço em desenvolvimento.");
     }
 
     return (
@@ -128,7 +133,7 @@ const LoginPage = () => {
                             />
                         </Row>
                         <Row>
-                            <XLink href="/">Esqueceu sua senha?</XLink>
+                            <XLink href="#" onClick={showAlert}>Esqueceu sua senha?</XLink>
                         </Row>
                         <Row>
                             <Button type="submit" loading={loading}>Entrar</Button>
