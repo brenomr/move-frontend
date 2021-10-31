@@ -87,6 +87,10 @@ const LoginPage = () => {
         }
     }
 
+    const showAlert = () => {
+        alert("Desculpe-nos, serviço em desenvolvimento.");
+    }
+
     return (
         <LoginLayout>
             <XForm onSubmit={handleSubmit}>
@@ -129,7 +133,7 @@ const LoginPage = () => {
                             />
                         </Row>
                         <Row>
-                            <XLink href="/">Esqueceu sua senha?</XLink>
+                            <XLink href="#" onClick={showAlert}>Esqueceu sua senha?</XLink>
                         </Row>
                         <Row>
                             <Button type="submit" loading={loading}>Entrar</Button>
