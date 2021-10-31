@@ -1,8 +1,11 @@
-import { Menu, MenuItem, IconButton, Badge, Box, AppBar, Toolbar } from '@material-ui/core';
+import { Menu, MenuItem, IconButton, Badge, Box, AppBar, Toolbar, Avatar, Typography } from '@material-ui/core';
 import { AccountCircle, Mail, More, Notifications, MenuOutlined, ExitToApp } from '@material-ui/icons';
+import { selectUser } from 'features/user/selectors';
 import useLogout from 'hooks/useLogout';
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import theme from 'styles/theme';
+import { useHistory } from "react-router-dom";
 
 export default function TopMenu() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -12,6 +15,8 @@ export default function TopMenu() {
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
     const logout = useLogout();
+    const { name, avatar } = useSelector(selectUser);
+    const history = useHistory();
 
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -24,6 +29,11 @@ export default function TopMenu() {
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
+    };
+
+    const handleRedirectProfile = () => {
+        history.push("/perfil");
+        handleMenuClose();
     };
 
     const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -47,8 +57,8 @@ export default function TopMenu() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Meu perfil</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Sair</MenuItem>
+            <MenuItem onClick={handleRedirectProfile}>Meu perfil</MenuItem>
+            <MenuItem onClick={logout}>Sair</MenuItem>
         </Menu>
     );
 
@@ -60,20 +70,21 @@ export default function TopMenu() {
                     <MenuOutlined />
                 </IconButton> */}
                     <Box sx={{ flexGrow: 1 }} />
+                    <Typography style={{ marginRight: 10 }}>{name}</Typography>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton
                             size="medium"
-                            edge="end"
+                            edge="start"
                             aria-label="account of current user"
                             aria-controls={menuId}
                             aria-haspopup="true"
-                            onClick={logout}
+                            onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
-                            <ExitToApp />
+                            <Avatar src={avatar} style={{ width: 40, height: 40, background: 'white' }} />
                         </IconButton>
+                        {renderMenu}
                     </Box>
-
                 </Toolbar>
             </AppBar>
         </Box >
