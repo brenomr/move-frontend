@@ -7,6 +7,7 @@ export interface IUserState {
   name: string
   signed: boolean
   whois: TWhoIs
+  avatar: string
 }
 
 export type TWhoIs = EWhoIs | null

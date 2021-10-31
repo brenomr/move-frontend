@@ -71,6 +71,7 @@ const LoginPage = () => {
                 email: fields.email,
                 name: payload.username,
                 whois: payload.whois,
+                avatar: payload.avatar,
                 signed: true
             }));
         }

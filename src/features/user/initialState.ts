@@ -11,7 +11,8 @@ const initialState: IUserState = {
   email: '',
   name: '',
   signed: false,
-  whois: null
+  whois: null,
+  avatar: ''
 }
 
 /**
