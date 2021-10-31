@@ -180,7 +180,8 @@ function CreateExercise() {
                         label="Repetição"
                         variant="outlined"
                         required
-                        type="number"
+                        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                        helperText="Informe apenas números"
                         name="repetition"
                         value={state.repetition}
                         onChange={handleChange}
@@ -191,7 +192,9 @@ function CreateExercise() {
                     <TextField
                         label="Série"
                         variant="outlined"
-                        type="number"
+                        required
+                        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                        helperText="Informe apenas números"
                         name="serie"
                         value={state.serie}
                         onChange={handleChange}
@@ -199,7 +202,9 @@ function CreateExercise() {
                     <TextField
                         label="Intervalo (segundos)"
                         variant="outlined"
-                        type="number"
+                        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                        helperText="Informe apenas números"
+                        required
                         name="breaktime"
                         value={state.breaktime}
                         onChange={handleChange}
