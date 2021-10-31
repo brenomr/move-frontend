@@ -177,6 +177,7 @@ function CreateTraining() {
                     <TextField
                         label="Descrição"
                         variant="outlined"
+                        placeholder="Descrição do treino que será exibida ao aluno"
                         required
                         name="description"
                         value={state.description}

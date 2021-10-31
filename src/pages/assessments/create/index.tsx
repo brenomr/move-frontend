@@ -195,6 +195,8 @@ function CreateAssessment() {
                         type="file"
                         name="attached_url"
                         onChange={pickFile}
+                        required
+                        style={{ width: 300 }}
                     />
                 </div>
                 <div className={classes.grid}>

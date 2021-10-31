@@ -207,10 +207,13 @@ function CreateCourse() {
                     <TextField
                         label="Descrição"
                         variant="outlined"
+                        placeholder="Exibida apenas para o aluno selecionado. Ex: Realizar diariamente"
                         name="description"
                         value={state.description}
                         onChange={handleChange}
                     />
+                </div>
+                <div className={classes.grid}>
                     <TextField
                         label="Data de Início"
                         variant="outlined"
